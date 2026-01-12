@@ -14,13 +14,16 @@ function newGrid(sideLength) {
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "grey";
+            const red = Math.floor(Math.random() * 256);
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
         })
     });
 }
 
-const button = document.querySelector("#new");
-button.addEventListener("click", () => {
+const newButton = document.querySelector("#new");
+newButton.addEventListener("click", () => {
     const input = parseInt(prompt("How many squares per side?", "16"));
 
     if (isNaN(input) || input > 100 || input < 2) {
@@ -29,5 +32,13 @@ button.addEventListener("click", () => {
         newGrid(input);
     }
 });
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach((square) => {
+        square.style.backgroundColor = "white";
+    })
+})
 
 newGrid(16);
